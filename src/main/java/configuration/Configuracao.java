@@ -14,12 +14,6 @@ public class Configuracao extends Configuration {
     private String logradouro;
 
     @NotEmpty
-    private String complemento;
-
-    @NotEmpty
-    private String complemento2;
-
-    @NotEmpty
     private String bairro;
 
     @NotEmpty

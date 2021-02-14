@@ -8,20 +8,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Endereco {
 
-    private int contador;
     private String logradouro;
-    private String complemento;
-    private String complemento2;
     private String bairro;
     private String cidade;
     private String uf;
     private String cep;
 
-    /**
-     * Construtor para incializar o contador de zeros a direita
-     */
-    public Endereco(){
-        this.contador = 0;
+    public Endereco(String logradouro, String bairro, String cidade, String uf, String cep) {
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.cep = cep;
     }
 
     /**
@@ -62,13 +60,6 @@ public class Endereco {
      */
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    /**
-     * toda vez que um número a direita é substituido por zero, incrementa o contador para controle
-     */
-    public void incrementaContador(){
-        this.contador++;
     }
 
     /**
@@ -114,14 +105,6 @@ public class Endereco {
     @JsonProperty
     public String getCep() {
         return cep;
-    }
-
-    /**
-     *
-     * @return quantas vezes já substituiu o valor a direita por zero
-     */
-    public int getContador(){
-        return contador;
     }
 
 }
