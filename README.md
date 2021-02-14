@@ -1,6 +1,12 @@
 # busca-cep
 Serviço de buscar CEP e autocompletar os campos do cadastro com as informações do endereço.
 
+<H1>Execução da aplicação</H1>
+
+1. Execute `mvn clean package` para buildar a aplicação
+3. Inicie a aplicação com `java -jar target/busca-cep-1.0.jar server etc/development.yml`
+4. Para ver aplicação do serviço digite `http://localhost:8080/busca-cep/{CEP}` no navegador.
+
 <H1>Planejamento da soluçao</H1>
 Inicialmente pesquisei por formas de integração com a API dos correios. Contudo, encotrei diversos relatos de mal funcionamento
 da API dos correios, tais como, problemas quanto ao número de consultas e problemas com integração, necessidade de crawler, etc.
