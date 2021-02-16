@@ -15,7 +15,8 @@ import java.io.IOException;
 import static org.apache.commons.lang3.StringUtils.containsOnly;
 
 /**
- * Classe que implementa o serviço, basicamente consulta a base da viacep e retorna um objeto correspondente a esta aplicação
+ * Classe que implementa o serviço, basicamente consulta a base da viacep e retorna o
+ * endpoint correspondente a esta aplicação
  * @author Leonildo Azevedo
  */
 public class BuscaCEP {
@@ -44,18 +45,20 @@ public class BuscaCEP {
         int cepIndice = cep.length();
         //substitui os valores a direita por zero enquanto a resposta for nula ou ainda houver valores para substituir
         while (response == null && !containsOnly(cep, '0')) {
-            logger.debug("CEP não encontrado [{}]", cep);
+            logger.info("CEP não encontrado {}, trocando valor por zero!", cep);
             cep.setCharAt(--cepIndice, '0');
             response = buscar(cep.toString());
         }
 
         if (response == null) {
+            logger.error("Não foi possível encontrar cep {} em viacep", numero);
             return null;
         }
 
         try{
             return converter(objectMapper.readValue(response, EndpointCEP.class));
         } catch (IOException e) {
+            logger.error("Erro ao converter endereço proveniente da viaCep");
             throw new RuntimeException(e);
         }
     }
@@ -66,7 +69,7 @@ public class BuscaCEP {
      * @return um string correspondente ao json da consulta na API viacep
      */
     protected String buscar(String numero) {
-        logger.debug("Buscando cep [{}] em viacep", numero);
+        logger.info("Buscando cep {} em viacep", numero);
         Response response = client.target(target)
                 .path(numero + "/json/")
                 .request(MediaType.APPLICATION_JSON_TYPE)
@@ -76,6 +79,10 @@ public class BuscaCEP {
         }
 
         String body = response.readEntity(String.class);
+        //mensagem de erro da viaCep quando um CEP não é encontrado
+        if (body.contains("\"erro\": true")) {
+            return null;
+        }
 
         return body;
     }

@@ -1,8 +1,10 @@
+import configuration.BuscaCepConfig;
 import io.dropwizard.Application;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.setup.Environment;
 import service.BuscaCEP;
 import resources.Recursos;
+import health.BuscaCepHealthCheck;
 
 import javax.ws.rs.client.Client;
 
@@ -29,8 +31,8 @@ public class BuscaCepApp extends Application<BuscaCepConfig> {
         Recursos cepResource = new Recursos(buscaCEP);
         environment.jersey().register(cepResource);
 
-        //CorreioControlHealthCheck correioControlHealthCheck = new CorreioControlHealthCheck(cepService);
-        //environment.healthChecks().register("correiocontrol", correioControlHealthCheck);
+        BuscaCepHealthCheck buscaCepHealthCheck = new BuscaCepHealthCheck(buscaCEP);
+        environment.healthChecks().register("BuscaCepHealthCheck", buscaCepHealthCheck);
     }
 
 }

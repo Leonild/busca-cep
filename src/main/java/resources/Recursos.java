@@ -34,7 +34,7 @@ public class Recursos {
     @GET
     @Path("/{numero}")
     @Timed
-    public Response getCEPValido(@Length(min = 8, max = 8, message = "CEP inválido")
+    public Response getCEPValido(@Length(min = 8, max = 8, message = "CEP inválida")
                                     @Digits(integer = 8, fraction = 0, message = "CEP inválido")
                                     @PathParam("numero") String numero) {
         Endereco endereco = buscaCEP.getCEPValido(numero);
