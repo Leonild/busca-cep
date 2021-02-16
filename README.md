@@ -28,7 +28,7 @@ A aplicação segue uma implementação de 4 camadas, onde a primeira é de apre
 
 De forma abstrata, a figura abaixo exemplifica a conexão e interação entre as camadas:
 
-<iframe src="https://drive.google.com/file/d/1Z0_TIOyKlFWp6hqzVkDplqK5Kb4mhYxE/preview" width="640" height="480"></iframe>
+![alt text](https://drive.google.com/file/d/1Z0_TIOyKlFWp6hqzVkDplqK5Kb4mhYxE/preview)
 
 <H2>Tecnologias e Padrões</H2>
 
