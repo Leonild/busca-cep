@@ -28,7 +28,7 @@ A aplicação segue uma implementação de 4 camadas, onde a primeira é de apre
 
 De forma abstrata, a figura abaixo exemplifica a conexão e interação entre as camadas:
 
-![alt text](https://drive.google.com/file/d/1Z0_TIOyKlFWp6hqzVkDplqK5Kb4mhYxE/preview)
+![alt text](https://i.ibb.co/D8W1Tpd/arquitetura.png)
 
 <H2>Tecnologias e Padrões</H2>
 
