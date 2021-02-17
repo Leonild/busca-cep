@@ -2,6 +2,8 @@ package configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 /**
  * Classe para mapear os atributos retornados pela viacep
  * @author Leonildo Azevedo
@@ -119,6 +121,26 @@ public class EndpointCEP {
     @JsonProperty
     public String getSiafi() {
         return siafi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EndpointCEP endpointCEP = (EndpointCEP) o;
+        return Objects.equals(cep, endpointCEP.cep) &&
+                Objects.equals(logradouro, endpointCEP.logradouro) &&
+                Objects.equals(bairro, endpointCEP.bairro) &&
+                Objects.equals(localidade, endpointCEP.localidade) &&
+                Objects.equals(uf, endpointCEP.uf) &&
+                Objects.equals(ibge, endpointCEP.ibge) &&
+                Objects.equals(gia, endpointCEP.gia) &&
+                Objects.equals(siafi, endpointCEP.siafi);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep, logradouro, bairro, localidade, uf, ibge, gia, siafi);
     }
 
 }

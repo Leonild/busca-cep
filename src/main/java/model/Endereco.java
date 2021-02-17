@@ -2,6 +2,8 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 /**
  * Classe destinada a armazenamento das informações do endereço
  * @author Leonildo Azevedo
@@ -21,6 +23,8 @@ public class Endereco {
         this.uf = uf;
         this.cep = cep;
     }
+
+    public Endereco(){}
 
     /**
      * Atribui o logradouro do endereço
@@ -105,6 +109,23 @@ public class Endereco {
     @JsonProperty
     public String getCep() {
         return cep;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(cep, endereco.cep) &&
+                Objects.equals(logradouro, endereco.logradouro) &&
+                Objects.equals(bairro, endereco.bairro) &&
+                Objects.equals(cidade, endereco.cidade) &&
+                Objects.equals(uf, endereco.uf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep, logradouro, bairro, cidade, uf);
     }
 
 }
